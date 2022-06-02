@@ -27,6 +27,7 @@
 
 
 ## Example of demo output
+> Play with your terimal, you will see color output which would be more readable.
 
     #################################
     ########### Initial #############
