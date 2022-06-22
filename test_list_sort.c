@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-#define TEST_LIST_LEN 16
+#define TEST_LIST_LEN 8
 
 # define likely(x)	__builtin_expect(!!(x), 1)
 # define unlikely(x)	__builtin_expect(!!(x), 0)
@@ -293,6 +293,7 @@ void list_sort(void *priv, struct list_head *head,
 		count++;
         dump_list_prev(count, pending, "pending lists");
         dump_list_next(count, list, "\e\[0;95;1mremaing elements");
+        printf("\n\n");
 	} while (list);
 
 
@@ -305,6 +306,7 @@ void list_sort(void *priv, struct list_head *head,
 
         dump_list_prev(count, pending, "pending lists");
         dump_list_next(count, list, "\e\[0;96;1mgenerate result");
+        printf("\n\n");
 		if (!next)
 			break;
 		list = merge(priv, (cmp_func)cmp, pending, list);
@@ -374,7 +376,7 @@ static void dump_list(struct list_head *head)
 	struct tnode *el;
 	struct list_head *cur;
 
-	for (cur = head->next; (cur->next != head) && (cur->next != NULL); cur = cur->next) {
+	for (cur = head->next; (cur != head) && (cur->next != NULL); cur = cur->next) {
 		el = container_of(cur, struct tnode, list);
         printf("%3d -> %c\n", el->serial, (char) el->value);
 	}
